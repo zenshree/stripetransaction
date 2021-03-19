@@ -3,7 +3,7 @@ import stripe
 import json
 from dhooks import Webhook, Embed
 
-stripe.api_key = 'sk_test_51HfjuZFBda6eVjZNDqUTDg92lDhnrCtUxSWwYrgLz6zAuy2jvaf4mkNGNIY2pLc3YRooPqFUJVB1pi0oYZAadKL100divA4B47'
+stripe.api_key = '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'
 hook = Webhook(
     "https://discord.com/api/webhooks/819433584519675924/ZZ2JTOQCpiixRTfKzXWIJ3g9_O9H9feMkp-QL48Mca5cUN62XqapGQ3oumCnCF_RrYST")
 app = Flask(__name__)
