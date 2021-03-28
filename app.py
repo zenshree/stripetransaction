@@ -28,10 +28,12 @@ def webhook():
         finalamount2 = float(abs((amount2 / 100)))
         formatted_finalamount2 = "{:.2f}".format(finalamount2)
         mercinfo = merc["name"]
+        type = status1["status"].upper()
         try:
             desc1 = desc[len(desc) - 1]
         except:
             a = 'Declined'
+
             embed = Embed(
                 description='**Stripe Decline**',
                 color=0xe74c3c,
@@ -40,7 +42,7 @@ def webhook():
             image1 = "https://i.imgur.com/DtBTf0A.png"
             image2 = "https://i.imgur.com/VOrFuWz.png"
             embed.add_field(name='Amount', value=f"${formatted_finalamount2}")
-            embed.add_field(name='Status', value=f"{a}")
+            embed.add_field(name='Status', value=f"{type}")
             embed.add_field(name='Merchant', value=f"{mercinfo}", inline=False)
             embed.set_footer(text='Made by Zenshree', icon_url=image2)
             embed.set_thumbnail(image1)
@@ -49,19 +51,20 @@ def webhook():
         desc3 = json.dumps(desc1)
         desc2 = json.loads(desc3)
         amount = desc2["net"]
+        type1 = status1["status"]
+        type2 = type1.upper()
         finalamount = float(abs((amount / 100)))
         type = desc2["type"]
-        if type == 'issuing_authorization_release':
-            a = 'Closed'
+        if type1 == 'pending':
             embed = Embed(
-                description='**New Stripe Authorization**',
-                color=0x5CDBF0,
-                timestamp='now'
-            )
+                    description='**New Stripe Authorization**',
+                    color=0x5CDBF0,
+                    timestamp='now'
+                )
             image1 = "https://i.imgur.com/DtBTf0A.png"
             image2 = "https://i.imgur.com/VOrFuWz.png"
             embed.add_field(name='Amount', value=f"${formatted_finalamount2}")
-            embed.add_field(name='Status', value=f"{a}")
+            embed.add_field(name='Status', value=f"{type2}")
             embed.add_field(name='Merchant', value=f"{mercinfo}", inline=False)
             embed.set_footer(text='Made by Zenshree', icon_url=image2)
             embed.set_thumbnail(image1)
@@ -101,13 +104,7 @@ def webhook():
         desc1 = desc[len(desc) - 1]
         desc3 = json.dumps(desc1)
         desc2 = json.loads(desc3)
-        type = desc2["type"]
-        if type == 'issuing_authorization_release':
-            a = 'Closed'
-        elif type == 'issuing_authorization_hold':
-            a = 'Pending'
-        else:
-            a = 'Reversed'
+        type = status1["status"].upper()
         amount = desc2["net"]
         finalamount2 = float(abs((amount / 100)))
         formatted_finalamount2 = "{:.2f}".format(finalamount2)
@@ -119,7 +116,7 @@ def webhook():
         image1 = "https://i.imgur.com/DtBTf0A.png"
         image2 = "https://i.imgur.com/VOrFuWz.png"
         embed.add_field(name='Amount', value=f"${formatted_finalamount2}")
-        embed.add_field(name='Status', value=f"{a}")
+        embed.add_field(name='Status', value=f"{type}")
         embed.add_field(name='Merchant', value=f"{mercinfo}",inline=False)
         embed.set_footer(text='Made by Zenshree',icon_url=image2)
         embed.set_thumbnail(image1)
@@ -129,13 +126,3 @@ def webhook():
         return 'Unexpected event type', 400
 
     return '', 200
-
-# @app.route('/privwebhook', methods=['POST'])
-# def webhook2():
-#     payload3 = request.data
-#     if True:
-#         print(payload3)
-#         return '',200
-#     else:
-#         print(payload3)
-#         return '',400
