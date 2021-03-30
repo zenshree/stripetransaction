@@ -35,7 +35,7 @@ def webhook():
             a = 'Declined'
 
             embed = Embed(
-                description='**Stripe Decline**',
+                description='[**Stripe Decline**](https://dashboard.stripe.com/issuing/authorizations/)',
                 color=0xe74c3c,
                 timestamp='now'
             )
@@ -57,7 +57,7 @@ def webhook():
         type = desc2["type"]
         if type1 == 'pending':
             embed = Embed(
-                    description='**New Stripe Authorization**',
+                    description='[**New Stripe Authorization**](https://dashboard.stripe.com/issuing/authorizations/)',
                     color=0x5CDBF0,
                     timestamp='now'
                 )
@@ -73,7 +73,7 @@ def webhook():
         elif type == 'issuing_authorization_hold':
             a = 'Pending'
             embed = Embed(
-                description='**New Stripe Authorization**',
+                description='[**New Stripe Authorization**](https://dashboard.stripe.com/issuing/authorizations/)',
                 color=0x5CDBF0,
                 timestamp='now'
             )
@@ -109,7 +109,7 @@ def webhook():
         finalamount2 = float(abs((amount / 100)))
         formatted_finalamount2 = "{:.2f}".format(finalamount2)
         embed = Embed(
-            description='**Stripe Authorization Updated**',
+            description='[**Stripe Authorization Updated**](https://dashboard.stripe.com/issuing/authorizations/)',
             color=0x5CDBF0,
             timestamp='now'
         )
