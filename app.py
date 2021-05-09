@@ -121,7 +121,26 @@ def webhook():
         embed.set_footer(text='Made by Zenshree',icon_url=image2)
         embed.set_thumbnail(image1)
         hook.send(embed=embed)
-
+    elif event['type'] == 'topup.succeeded':
+        topup = event['data']['object']
+        topup1 = json.dumps(topup)
+        topup2 = json.loads(topup1)
+        amount = topup2["amount"]
+        finalamount = float(abs((amount / 100)))
+        formatted_finalamount1 = "{:.2f}".format(finalamount)
+        embed = Embed(
+            description='[**Top-up Succeeded**](https://dashboard.stripe.com/topups/)',
+            color=0x5CDBF0,
+            timestamp='now'
+        )
+        image1 = "https://i.imgur.com/DtBTf0A.png"
+        image2 = "https://i.imgur.com/VOrFuWz.png"
+        embed.add_field(name='Amount', value=f"${formatted_finalamount1}")
+        embed.add_field(name='Status', value="Success")
+        # embed.add_field(name='Merchant', value=f"{mercinfo}", inline=False)
+        embed.set_footer(text='Made by Zenshree', icon_url=image2)
+        embed.set_thumbnail(image1)
+        hook.send(embed=embed)
     else:
         return 'Unexpected event type', 400
 
