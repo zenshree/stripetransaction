@@ -136,7 +136,7 @@ def webhook():
         image1 = "https://i.imgur.com/DtBTf0A.png"
         image2 = "https://i.imgur.com/VOrFuWz.png"
         embed.add_field(name='Amount', value=f"${formatted_finalamount1}")
-        embed.add_field(name='Status', value="Success")
+        embed.add_field(name='Status', value="SUCCESS")
         # embed.add_field(name='Merchant', value=f"{mercinfo}", inline=False)
         embed.set_footer(text='Made by Zenshree', icon_url=image2)
         embed.set_thumbnail(image1)
